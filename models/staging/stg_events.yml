@@ -1,0 +1,152 @@
+version: 2
+
+models:
+  - name: stg_daily_weather_events
+    description: Stage daily weather events data
+    columns: 
+      - name: city
+        description: The city in address record.
+        tests:
+          - not_null
+      - name: weather_events
+        description: Number of Weather Events occurred
+        test: 
+          - not_negative
+      - name: day
+        description: Day that the events occurred
+        tests:
+          - not_null
+
+  - name: stg_daily_traffic_events_with_severity
+    description: Stage daily traffic events data with severity
+    columns: 
+      - name: day
+        description: Day that the events occurred
+        tests:
+          - not_null
+      - name: city
+        description: The city in address record.
+        tests:
+          - not_null
+      - name: traffic_events
+        description: Total number of traffic events
+        tests:
+          - not_negative
+          - not_null
+      - name: minimum_severity
+        description: Number of traffic events with minimum severity
+        tests:
+          - not_negative
+          - not_null
+      - name: low_severity
+        description: Number of traffic events with low severity
+        tests:
+          - not_negative
+          - not_null
+      - name: medium_severity
+        description: Number of traffic events with medium severity
+        tests:
+          - not_negative
+          - not_null
+      - name: high_severity
+        description: Number of traffic events with high severity
+        tests:
+          - not_negative
+          - not_null
+      - name: max_severity
+        description: Number of traffic events with max severity
+        tests:
+          - not_negative
+          - not_null
+
+  - name: stg_daily_weather_events_with_severity
+    description: Stage daily weather events data with severity
+    columns: 
+      - name: city
+        description: The city in address record.
+        tests:
+          - not_null
+      - name: weather_events
+        description: Total number of weather events
+        test: 
+          - not_negative
+          - not_null
+      - name: day
+        description: Day that the events occurred
+        tests:
+          - not_null
+      - name: light
+        description: Number of light weather events
+        tests:
+          - not_negative
+          - not_null
+      - name: moderate
+        description: Number of moderate weather events
+        tests:
+          - not_negative
+          - not_null
+      - name: severe
+        description: Number of severe weather events
+        tests:
+          - not_negative
+          - not_null
+      - name: heavy
+        description: Number of heavy weather events
+        tests:
+          - not_negative
+          - not_null
+  
+  - name: stg_daily_traffic_events
+    description: Stage daily traffic events data
+    columns: 
+      - name: city
+        description: The city in address record.
+        tests:
+          - not_null
+      - name: traffic_events
+        description: Total number of traffic events
+        test: 
+          - not_negative
+      - name: day
+        description: Day that the events occurred
+        tests:
+          - not_null
+
+  - name: stg_total_weather_events_by_state
+    description: Stage total weather events per state
+    columns: 
+      - name: state
+        description: The state in address record.
+        tests:
+          - not_null
+      - name: weather_events
+        description: Total weather events per state
+        test: 
+          - not_negative
+          - not_null
+  - name: stg_total_traffic_events_by_state
+    description: Stage total traffic events per state
+    columns: 
+      - name: state
+        description: The state in address record.
+        tests:
+          - not_null
+      - name: traffic_events
+        description: Total traffic events per state
+        test: 
+          - not_negative
+          - not_null
+  - name: stg_total_traffic_events_by_city
+    description: Stage total traffic events per city
+    columns: 
+      - name: city
+        description: The city in address record.
+        tests:
+          - not_null
+      - name: traffic_events
+        description: Total traffic events per state
+        test: 
+          - not_negative
+          - not_null
+          
+

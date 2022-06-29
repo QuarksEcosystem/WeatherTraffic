@@ -1,0 +1,126 @@
+version: 2
+
+sources:
+    - name: weather_events
+      database: TRIGGO_EXAMPLES_DATABASE
+      schema: weather
+      tables:
+        - name: US_WEATHER_EVENTS_RAW
+          description: Raw weather events data in United States
+          columns:
+            - name: eventid
+              description: This is the identifier of a record
+              tests:
+                - unique
+                - not_null
+            - name: type
+              description: The type of an event; examples are rain and snow.
+              tests:
+                - accepted_values:
+                    values: ['Severe-Cold', 'Fog', 'Hail', 'Rain', 'Snow', 'Storm', 'Precipitation']
+                    config:
+                      severity: warn
+                - not_null
+            - name: severity
+              description: The severity of an event, wherever applicable.
+              tests:
+                - accepted_values:
+                    values: ["Light", "Moderate", "UNK", "Heavy", "Severe", "Other"]
+            - name: StartTime
+              description: The start time of an event in UTC time zone.
+              tests:
+                - not_null
+            - name: EndTime
+              description: The end time of an event in UTC time zone.
+              tests:
+                - not_null
+            - name: timezone
+              description: The US-based timezone based on the location of an event (eastern, central, mountain, and pacific).
+              tests:
+                - not_null
+            - name: LocationLat
+              description: The latitude in GPS coordinate.
+            - name: LocationLng
+              description: The longitude in GPS coordinate.
+            - name: AirportCode
+              description: The airport station that a weather event is reported from.
+            - name: City
+              description: The city in address record.
+            - name: County
+              description: The county in address record.
+            - name: State
+              description: The state in address record.
+            - name: ZipCode
+              description: The zipcode in address record.
+
+    - name: traffic_events
+      database: TRIGGO_EXAMPLES_DATABASE
+      schema: traffic
+      tables:
+        - name: US_TRAFFIC_EVENTS_RAW
+          description: Raw traffic events data in United States
+          columns:
+            - name: eventid
+              description: Primary Key
+              tests:
+                - unique
+                - not_null
+            - name: type
+              description: The type of an event; examples are accident and congestion.
+              tests:
+                - accepted_values:
+                    values: ['Accident', 'Broken-Vehicle', 'Congestion', 'Construction', 'Event', 'Lane-Blocked', 'Flow-Incident']
+                - not_null
+            - name: severity
+              description: The severity is a value between 0 and 4, where 0 indicates the least impact on traffic (i.e., short delay as a result of the event) and 4 indicates a significant impact on traffic (i.e., long delay).
+              tests:
+                - accepted_values:
+                    values: [0, 1, 2, 3, 4]
+                - not_null
+            - name: tmc
+              description: Each traffic event has a Traffic Message Channel (TMC) code which provides a more detailed description on type of the event.
+              tests:
+                - not_null
+            - name: description
+              description: The natural language description of an event.
+              tests:
+                - not_null
+            - name: "'StartTime(UTC)'"
+              description: The start time of an event in UTC time zone.
+              tests:
+                - not_null
+            - name: "'EndTime(UTC)'"
+              description: The end time of an event in UTC time zone.
+              tests:
+                - not_null
+            - name: timezone
+              description: The US-based timezone based on the location of an event (eastern, central, mountain, and pacific).
+              tests:
+                - not_null
+            - name: LocationLat
+              description: The latitude in GPS coordinate.
+            - name: LocationLng
+              description: The longitude in GPS coordinate.
+            - name: "Distance(mi)"
+              description: The length of the road extent affected by the event.
+            - name: AirportCode
+              description: The closest airport station to the location of a traffic event.
+            - name: Number
+              description: The street number in address record.
+            - name: Street
+              description: The street name in address record.
+            - name: side
+              description: The relative side of a street (R/L) in address record.
+              tests:
+                - accepted_values:
+                    values: ["R", "L"]
+                    config:
+                      severity: warn
+            - name: City
+              description: The city in address record.
+            - name: County
+              description: The county in address record.
+            - name: State
+              description: The state in address record.
+            - name: ZipCode
+              description: The zipcode in address record.
