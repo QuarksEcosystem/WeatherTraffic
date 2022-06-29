@@ -60,7 +60,11 @@ seeds:
     #       - not_null
     config:
       re_data_monitored: true
-  - name: DAYS_2018_2020
+  - name: DAYS_2016_2020
     description: Cities with population and population density
+    config:
+      re_data_monitored: true
+  - name: hours
+    description: Hours of the day with 15 min resolution
     config:
       re_data_monitored: true

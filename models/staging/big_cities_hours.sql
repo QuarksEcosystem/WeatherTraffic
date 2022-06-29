@@ -5,9 +5,9 @@ with big_cities as (
         order by traffic_events desc
         limit 200
 ),
-hours as (
-
+hour as (
+    select hours from {{ref ('hours')}}
 ),
-days as(
-    select days from 
+day as(
+    select day from {{ref ('DAYS_2018_2020')}}
 )
