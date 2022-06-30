@@ -16,4 +16,4 @@ final as(
     cross join {{ ref('hours')}}
 )
 
-select * from final;
+select * from final

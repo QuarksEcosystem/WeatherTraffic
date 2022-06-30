@@ -148,5 +148,11 @@ models:
         test: 
           - not_negative
           - not_null
+  - name: stg_traffic_parsed_timezone
+    description: Parsed Traffic Raw data with timezone
+
+  - name: stg_weather_parsed_timezone
+    description: Parsed Weather Raw data with timezone
+          
           
 

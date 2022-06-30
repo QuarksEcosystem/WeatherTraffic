@@ -1,0 +1,3 @@
+select EVENTID, TYPE, SEVERITY, CONVERT_TIMEZONE( 'UTC', TIMEZONE , StartTime ) as StartTime,
+       CONVERT_TIMEZONE( 'UTC', TIMEZONE , EndTime ) as EndTime, LOCATIONLAT, LOCATIONLNG,
+       AIRPORTCODE, CITY, COUNTY, STATE, ZIPCODE from {{source ('weather_events', 'US_WEATHER_EVENTS_RAW')}};
