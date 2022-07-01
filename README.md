@@ -1,6 +1,5 @@
 ## Testing dbt project: `Traffic_Weather_Events`
 
-
 This dbt project transforms raw data from traffic and weather datasets into models ready for analytics.
 
 ### What is this repo?
