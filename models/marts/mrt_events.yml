@@ -23,6 +23,28 @@ models:
         tests:
           - not_null
 
+  - name: monthly_events_by_city
+    description: Number of monthly weather and traffic events data by day
+    columns: 
+      - name: city
+        description: The city in address record.
+        tests:
+          - not_null
+      - name: traffic_events
+        description: The total number of traffic events
+        tests:
+          - not_null
+          - not_negative
+      - name: weather_events
+        description: The total number of weather events
+        tests:
+          - not_null
+          - not_negative
+      - name: month
+        description: Month of the events
+        tests:
+          - not_null
+
   - name: daily_events_by_city_with_severity
     description: Number of daily weather and traffic events data by day with severity of events
     columns: 
@@ -90,9 +112,75 @@ models:
           - not_negative
           - not_null
 
+  - name: monthly_events_by_city_with_severity
+    description: Number of monthly weather and traffic events data by day with severity of events
+    columns: 
+      - name: city
+        description: The city in address record.
+        tests:
+          - not_null
+      - name: traffic_events
+        description: The total number of traffic events
+        tests:
+          - not_null
+          - not_negative
+      - name: weather_events
+        description: The total number of weather events
+        tests:
+          - not_null
+          - not_negative
+      - name: month
+        description: Date of the events
+        tests:
+          - not_null
+      - name: minimum_severity
+        description: Number of traffic events with minimum severity
+        tests:
+          - not_negative
+          - not_null
+      - name: low_severity
+        description: Number of traffic events with low severity
+        tests:
+          - not_negative
+          - not_null
+      - name: medium_severity
+        description: Number of traffic events with medium severity
+        tests:
+          - not_negative
+          - not_null
+      - name: high_severity
+        description: Number of traffic events with high severity
+        tests:
+          - not_negative
+          - not_null
+      - name: max_severity
+        description: Number of traffic events with max severity
+        tests:
+          - not_negative
+          - not_null
+      - name: light_impact
+        description: Number of light weather events
+        tests:
+          - not_negative
+          - not_null
+      - name: moderate_impact
+        description: Number of moderate weather events
+        tests:
+          - not_negative
+          - not_null
+      - name: severe_impact
+        description: Number of severe weather events
+        tests:
+          - not_negative
+          - not_null
+      - name: heavy_impact
+        description: Number of heavy weather events
+        tests:
+          - not_negative
+          - not_null
 
-  - name: daily_events_by_city_with_holidays
-    description: Number of daily traffic events with holiday informations
+  - name: monthly_events_by_city_with_holidays
+    description: Number of monthly traffic events with holiday informations
     columns: 
       - name: city
         description: The city in address record.
@@ -103,7 +191,7 @@ models:
         tests:
           - not_null
           - not_negative
-      - name: day
+      - name: month
         description: Date of the events
         tests:
           - not_null
@@ -112,6 +200,24 @@ models:
   
   - name: total_events_by_state
     description: Total number of events per state during 2016 to 2021
+    columns:
+      - name: STUSPS
+        description: The state in address record.
+        test:
+          not_null
+      - name: traffic_events
+        description: Total number of traffic events
+        test:
+          not_null
+          not_negative
+      - name: weather_events
+        description: Total number of weather events
+        test:
+          not_null
+          not_negative
+
+  - name: bigcities_timed_events
+    description: Timed events in 200 most populated cities.
     columns:
       - name: STUSPS
         description: The state in address record.
