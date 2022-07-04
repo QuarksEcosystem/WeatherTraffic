@@ -33,38 +33,50 @@ seeds:
       re_data_time_filter: date
   - name: uscitypopdensity
     description: Cities with population and population density
-    # columns: 
-    #   - name: date
-    #     description: Full date of the holiday
-    #     tests:
-    #       - not_null
-    #   - name: holiday
-    #     description: Name of the holiday
-    #     tests:
-    #       - not_null
-    #   - name: weekday
-    #     description: Day of the week
-    #     tests:
-    #       - not_null
-    #   - name: month
-    #     description: Month part of the date
-    #     tests:
-    #       - not_null
-    #   - name: day
-    #     description: Day part of the date
-    #     tests:
-    #       - not_null
-    #   - name: year
-    #     description: Year part of the date
-    #     tests:
-    #       - not_null
+    columns: 
+      - name: index
+        description: Id of the row entry
+        tests:
+          - not_null
+          - unique
+      - name: city
+        tests:
+          - not_null
+      - name: state
+        description: City's state
+        tests:
+          - not_null
+      - name: density
+        description: The number of people living in each unit of area 
+        tests:
+          - not_null
+      - name: population 
+        description: all the inhabitants of the city
+        tests:
+          - not_null
+      - name: area
+        description: City's are in square miles
+        tests:
+          - not_null
     config:
       re_data_monitored: true
+
   - name: DAYS_2016_2020
     description: Cities with population and population density
+    columns: 
+      - name: days
+        tests:
+          - not_null
+          - unique
     config:
       re_data_monitored: true
+
   - name: hours
     description: Hours of the day with 15 min resolution
+    columns:
+      - name: hours 
+        tests:
+          - not_null
+          - unique
     config:
       re_data_monitored: true

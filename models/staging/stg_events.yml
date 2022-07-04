@@ -16,12 +16,70 @@ models:
         description: Day that the events occurred
         tests:
           - not_null
+  
+  - name: stg_monthly_weather_events
+    description: Stage monthly weather events data
+    columns: 
+      - name: city
+        description: The city in address record.
+        tests:
+          - not_null
+      - name: weather_events
+        description: Number of Weather Events occurred
+        test: 
+          - not_negative
+      - name: month
+        description: Month that the events occurred
+        tests:
+          - not_null
 
   - name: stg_daily_traffic_events_with_severity
     description: Stage daily traffic events data with severity
     columns: 
       - name: day
         description: Day that the events occurred
+        tests:
+          - not_null
+      - name: city
+        description: The city in address record.
+        tests:
+          - not_null
+      - name: traffic_events
+        description: Total number of traffic events
+        tests:
+          - not_negative
+          - not_null
+      - name: minimum_severity
+        description: Number of traffic events with minimum severity
+        tests:
+          - not_negative
+          - not_null
+      - name: low_severity
+        description: Number of traffic events with low severity
+        tests:
+          - not_negative
+          - not_null
+      - name: medium_severity
+        description: Number of traffic events with medium severity
+        tests:
+          - not_negative
+          - not_null
+      - name: high_severity
+        description: Number of traffic events with high severity
+        tests:
+          - not_negative
+          - not_null
+      - name: max_severity
+        description: Number of traffic events with max severity
+        tests:
+          - not_negative
+          - not_null
+
+  - name: stg_monthly_traffic_events_with_severity
+    description: Stage monthly traffic events data with severity
+    columns: 
+      - name: month
+        description: Month that the events occurred
         tests:
           - not_null
       - name: city
@@ -96,6 +154,43 @@ models:
           - not_negative
           - not_null
   
+  - name: stg_monthly_weather_events_with_severity
+    description: Stage monthly weather events data with severity
+    columns: 
+      - name: city
+        description: The city in address record.
+        tests:
+          - not_null
+      - name: weather_events
+        description: Total number of weather events
+        test: 
+          - not_negative
+          - not_null
+      - name: month
+        description: Month that the events occurred
+        tests:
+          - not_null
+      - name: light
+        description: Number of light weather events
+        tests:
+          - not_negative
+          - not_null
+      - name: moderate
+        description: Number of moderate weather events
+        tests:
+          - not_negative
+          - not_null
+      - name: severe
+        description: Number of severe weather events
+        tests:
+          - not_negative
+          - not_null
+      - name: heavy
+        description: Number of heavy weather events
+        tests:
+          - not_negative
+          - not_null
+  
   - name: stg_daily_traffic_events
     description: Stage daily traffic events data
     columns: 
@@ -109,6 +204,22 @@ models:
           - not_negative
       - name: day
         description: Day that the events occurred
+        tests:
+          - not_null
+  
+  - name: stg_monthly_traffic_events
+    description: Stage monthly traffic events data
+    columns: 
+      - name: city
+        description: The city in address record.
+        tests:
+          - not_null
+      - name: traffic_events
+        description: Total number of traffic events
+        test: 
+          - not_negative
+      - name: month
+        description: Month that the events occurred
         tests:
           - not_null
 
@@ -148,5 +259,113 @@ models:
         test: 
           - not_negative
           - not_null
+  - name: stg_traffic_parsed_timezone
+    description: Parsed Traffic data with timezone
+    columns:
+      - name: eventid
+        description: Primary Key
+        tests:
+          - unique
+          - not_null
+      - name: type
+        description: The type of an event; examples are accident and congestion.
+        tests:
+          - accepted_values:
+              values: ['Accident', 'Broken-Vehicle', 'Congestion', 'Construction', 'Event', 'Lane-Blocked', 'Flow-Incident']
+          - not_null
+      - name: severity
+        description: The severity is a value between 0 and 4, where 0 indicates the least impact on traffic (i.e., short delay as a result of the event) and 4 indicates a significant impact on traffic (i.e., long delay).
+        tests:
+          - accepted_values:
+              values: [0, 1, 2, 3, 4]
+          - not_null
+      - name: tmc
+        description: Each traffic event has a Traffic Message Channel (TMC) code which provides a more detailed description on type of the event.
+        tests:
+          - not_null
+      - name: description
+        description: The natural language description of an event.
+        tests:
+          - not_null
+      - name: StartTime
+        description: The start time of an event in UTC time zone.
+        tests:
+          - not_null
+      - name: EndTime
+        description: The end time of an event in UTC time zone.
+        tests:
+          - not_null
+      - name: LocationLat
+        description: The latitude in GPS coordinate.
+      - name: LocationLng
+        description: The longitude in GPS coordinate.
+      - name: "Distance(mi)"
+        description: The length of the road extent affected by the event.
+      - name: AirportCode
+        description: The closest airport station to the location of a traffic event.
+      - name: Number
+        description: The street number in address record.
+      - name: Street
+        description: The street name in address record.
+      - name: side
+        description: The relative side of a street (R/L) in address record.
+        tests:
+          - accepted_values:
+              values: ["R", "L"]
+              config:
+                severity: warn
+      - name: City
+        description: The city in address record.
+      - name: County
+        description: The county in address record.
+      - name: State
+        description: The state in address record.
+      - name: ZipCode
+        description: The zipcode in address record.
+
+  - name: stg_weather_parsed_timezone
+    description: Parsed Weather data with timezone 
+    columns:
+      - name: eventid
+        description: This is the identifier of a record
+        tests:
+          - unique
+          - not_null
+      - name: type
+        description: The type of an event; examples are rain and snow.
+        tests:
+          - accepted_values:
+              values: ['Severe-Cold', 'Fog', 'Hail', 'Rain', 'Snow', 'Storm', 'Precipitation']
+              config:
+                severity: warn
+          - not_null
+      - name: severity
+        description: The severity of an event, wherever applicable.
+        tests:
+          - accepted_values:
+              values: ["Light", "Moderate", "UNK", "Heavy", "Severe", "Other"]
+      - name: StartTime
+        description: The start time of an event in UTC time zone.
+        tests:
+          - not_null
+      - name: EndTime
+        description: The end time of an event in UTC time zone.
+        tests:
+          - not_null
+      - name: LocationLat
+        description: The latitude in GPS coordinate.
+      - name: LocationLng
+        description: The longitude in GPS coordinate.
+      - name: AirportCode
+        description: The airport station that a weather event is reported from.
+      - name: City
+        description: The city in address record.
+      - name: County
+        description: The county in address record.
+      - name: State
+        description: The state in address record.
+      - name: ZipCode
+        description: The zipcode in address record.
+          
           
 
