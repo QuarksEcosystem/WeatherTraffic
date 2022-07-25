@@ -2,7 +2,7 @@ with big_cities as (
     select
         city
     from {{ ref('uscitypopdensity')}}
-        order by population desc
+        order by Population desc
         limit 200
 ),
 
