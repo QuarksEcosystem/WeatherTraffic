@@ -2,7 +2,7 @@ version: 2
 
 sources:
     - name: weather_events
-      database: TRIGGO_EXAMPLES_DATABASE
+      database: TRAFFIC_WEATHER
       schema: weather
       tables:
         - name: US_WEATHER_EVENTS_RAW
@@ -54,7 +54,7 @@ sources:
               description: The zipcode in address record.
 
     - name: traffic_events
-      database: TRIGGO_EXAMPLES_DATABASE
+      database: TRAFFIC_WEATHER
       schema: traffic
       tables:
         - name: US_TRAFFIC_EVENTS_RAW
