@@ -124,3 +124,13 @@ sources:
               description: The state in address record.
             - name: ZipCode
               description: The zipcode in address record.
+
+
+    - name: fivetran_sync
+      database: TRAFFIC_WEATHER
+      schema: TRAFFIC_WEATHER_PROD
+      tables:
+        - name: traffic
+          description: Raw traffic events data in United States synced with fivetran
+        - name: weather
+          description: Raw traffic events data in United States synced with fivetran
