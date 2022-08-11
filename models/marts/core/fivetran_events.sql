@@ -1,9 +1,9 @@
 with traffic_events as (
-    select * from {{source ('traffic_weather_prod.traffic', 'traffic')}}
+    select * from {{source ('fivetran_sync', 'traffic')}}
 ),
 
 weather_events as (
-    select city as city_2, type as weather_event, start_time_utc_ as weather_start, end_time_utc_ as weather_end  from {{source ('traffic_weather_prod.weather', 'weather')}}
+    select city as city_2, type as weather_event, start_time_utc_ as weather_start, end_time_utc_ as weather_end  from {{source ('fivetran_sync', 'weather')}}
 ),
 
 final as(
