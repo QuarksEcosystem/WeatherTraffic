@@ -3,6 +3,6 @@ jobs:
     schedule: 0 12 * * *
     steps:
       - name: run models
-        command: dbt run
+        command: dbt run --select fivetran_events
       - name: test models
         command: dbt test
