@@ -12,7 +12,7 @@ with monthly_weather_events_with_severity as (
         count(case when severity = 'Moderate' then 1 else null end) as moderate,
         count(case when severity = 'Severe' then 1 else null end) as severe,
         count(case when severity = 'Heavy' then 1 else null end) as heavy,
-        date_trunc('month', StartTime) as month
+        date_trunc('month', Start_Time_UTC_) as month
     from {{source ('weather_events', 'US_WEATHER_EVENTS_RAW')}}
     where city is not null
     group by city, month

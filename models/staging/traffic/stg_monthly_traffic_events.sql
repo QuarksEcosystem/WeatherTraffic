@@ -8,7 +8,7 @@ with monthly_traffic_events as (
     select
         city,
         count(1)  as traffic_events,
-        date_trunc('month', "StartTime(UTC)") as month
+        date_trunc('month', Start_Time_UTC_) as month
     from {{source ('traffic_events', 'US_TRAFFIC_EVENTS_RAW')}}
     where city is not null
     group by city, month
