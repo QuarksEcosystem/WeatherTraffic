@@ -1,0 +1,1 @@
+select city:name as city, city:country as country, city:coord:lat as latitude, city:coord:lon as longitude, city:timezone as timezone, l.value:weather[0]:main as weather_type, l.value:weather[0]:description as description , l.value:dt_txt as starttime from weather.data , lateral flatten(input => list) l

@@ -3,7 +3,7 @@ with big_cities as (
         city
     from {{ ref('uscitypopdensity')}}
         order by Population desc
-        limit 200
+        limit 10
 ),
 
 cities_days as(
