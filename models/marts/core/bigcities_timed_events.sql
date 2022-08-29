@@ -19,4 +19,4 @@ big_cities_hours_events as(
     {{ref('stg_weather_parsed_timezone')}}.EndTime > event_timestamp
 )
 
-select * from big_cities_hours_events;
+select * from big_cities_hours_events
