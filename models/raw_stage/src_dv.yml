@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+    - name: datavault_src
+      database: TRAFFIC_WEATHER
+      schema: TRAFFIC
+      tables: 
+        - name: STG_FOOT_TRAFFIC
