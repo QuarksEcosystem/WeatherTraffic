@@ -1,4 +1,4 @@
-{%- set source_model = "v_stg_foot_weather" -%}
+{%- set source_model = "v_stg_weather" -%}
 {%- set src_pk = "WEATHER_PK" -%}
 {%- set src_nk = ["POSTAL_CODE","DATE_VALID_STD"] -%}
 {%- set src_ldts = "LOAD_DATE" -%}
