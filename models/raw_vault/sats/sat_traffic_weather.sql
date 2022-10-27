@@ -1,5 +1,6 @@
 {%- set source_model = "v_stg_traffic_weather_tx" -%}
 {%- set src_pk = "TRAFFIC_WEATHER_PK" -%}
+{%- set src_fk = ["TRAFFIC_PK","WEATHER_PK"] -%}
 {%- set src_hashdiff = "TRAFFIC_WEATHER_HASHDIFF" -%}
 {%- set src_payload = ["COUNTRY",
                         "FOOT_TRAFFIC_COUNT",

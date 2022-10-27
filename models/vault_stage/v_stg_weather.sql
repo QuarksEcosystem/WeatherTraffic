@@ -1,9 +1,10 @@
 {%- set yaml_metadata -%}
 source_model:
-    weather_src: 'HISTORY_DAY'
+    datavault_src: 'STG_WEATHER'
 derived_columns:
-  RECORD_SOURCE: '!SHARED_WEATHER_DATAFILE'
+  RECORD_SOURCE: ' rscr'
   EFFECTIVE_FROM: 'DATE_VALID_STD'
+  LOAD_DATE: 'ldts'
 hashed_columns:
   WEATHER_PK: 
     - 'POSTAL_CODE'
