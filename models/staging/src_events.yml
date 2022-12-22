@@ -134,3 +134,10 @@ sources:
           description: Raw traffic events data in United States synced with fivetran
         - name: weather
           description: Raw traffic events data in United States synced with fivetran
+
+    - name: openweatherdata
+      database: TRAFFIC_WEATHER
+      schema: weather
+      tables:
+        - name: data
+          description: Raw data from openweather api, 5 days 3 hours 
