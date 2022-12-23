@@ -34,5 +34,5 @@ WITH staging AS (
                   ranked_columns=none) }}
 )
 
-SELECT *, CURRENT_TIME() AS LOAD_DATE
+SELECT *, CURRENT_TIME() AS LOAD_DATE2
 FROM staging
