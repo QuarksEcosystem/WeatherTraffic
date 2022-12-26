@@ -8,7 +8,7 @@ sources:
         - name: US_WEATHER_EVENTS_RAW
           description: Raw weather events data in United States
           columns:
-            - name: eventid
+            - name: event_id
               description: This is the identifier of a record
               tests:
                 - unique
@@ -26,23 +26,23 @@ sources:
               tests:
                 - accepted_values:
                     values: ["Light", "Moderate", "UNK", "Heavy", "Severe", "Other"]
-            - name: StartTime
+            - name: START_TIME_UTC_
               description: The start time of an event in UTC time zone.
               tests:
                 - not_null
-            - name: EndTime
+            - name: END_TIME_UTC_
               description: The end time of an event in UTC time zone.
               tests:
                 - not_null
-            - name: timezone
+            - name: time_zone
               description: The US-based timezone based on the location of an event (eastern, central, mountain, and pacific).
               tests:
                 - not_null
-            - name: LocationLat
+            - name: LOCATION_LAT
               description: The latitude in GPS coordinate.
-            - name: LocationLng
+            - name: LOCATION_LNG
               description: The longitude in GPS coordinate.
-            - name: AirportCode
+            - name: AIRPORT_CODE
               description: The airport station that a weather event is reported from.
             - name: City
               description: The city in address record.
@@ -50,7 +50,7 @@ sources:
               description: The county in address record.
             - name: State
               description: The state in address record.
-            - name: ZipCode
+            - name: Zip_Code
               description: The zipcode in address record.
 
     - name: traffic_events
@@ -60,7 +60,7 @@ sources:
         - name: US_TRAFFIC_EVENTS_RAW
           description: Raw traffic events data in United States
           columns:
-            - name: eventid
+            - name: event_id
               description: Primary Key
               tests:
                 - unique
@@ -83,27 +83,23 @@ sources:
                 - not_null
             - name: description
               description: The natural language description of an event.
-              tests:
-                - not_null
-            - name: "'StartTime(UTC)'"
+            - name: START_TIME_UTC_
               description: The start time of an event in UTC time zone.
               tests:
                 - not_null
-            - name: "'EndTime(UTC)'"
+            - name: END_TIME_UTC_
               description: The end time of an event in UTC time zone.
               tests:
                 - not_null
-            - name: timezone
+            - name: time_zone
               description: The US-based timezone based on the location of an event (eastern, central, mountain, and pacific).
-              tests:
-                - not_null
-            - name: LocationLat
+            - name: Location_Lat
               description: The latitude in GPS coordinate.
-            - name: LocationLng
+            - name: Location_Lng
               description: The longitude in GPS coordinate.
-            - name: "Distance(mi)"
+            - name: "DISTANCE_MI_"
               description: The length of the road extent affected by the event.
-            - name: AirportCode
+            - name: Airport_Code
               description: The closest airport station to the location of a traffic event.
             - name: Number
               description: The street number in address record.
