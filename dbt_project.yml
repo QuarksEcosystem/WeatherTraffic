@@ -46,4 +46,5 @@ models:
 
 vars:
   re_data:save_test_history: true
+  'dbt_date:time_zone': 'America/Sao_Paulo'
 
