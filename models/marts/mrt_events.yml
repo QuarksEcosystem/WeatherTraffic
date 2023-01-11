@@ -6,15 +6,40 @@ models:
     columns:
       - name: STUSPS
         description: The state in address record.
-        test:
-          not_null
+        tests:
+          - not_null
       - name: traffic_events
         description: Total number of traffic events
-        test:
-          not_null
-          not_negative
+        tests:
+          - not_null
+          - not_negative
       - name: weather_events
         description: Total number of weather events
-        test:
-          not_null
-          not_negative
+        tests:
+          - not_null
+          - not_negative
+  - name: total_events_by_state
+    description: Total number of traffic and weather events of each US state.
+    tests:
+      - dbt_expectations.expect_table_column_count_to_equal:
+          value: 3
+    columns:
+      - name: STUSPS
+        description: The state in address record.
+        tests:
+          - dbt_expectations.expect_column_value_lengths_to_be_between:
+              min_value: 1 # (Optional)
+              max_value: 3 # (Optional)
+              row_condition: "STUSPS is not null" # (Optional)
+      - name: traffic_events
+        description: Total number of traffic events.
+        tests:
+          - dbt_expectations.expect_column_values_to_not_be_null:
+              row_condition: "traffic_events is not null" # (Optional)
+          - not_negative
+      - name: weather_events
+        description: Total number of weather events.
+        tests:
+          - dbt_expectations.expect_column_values_to_not_be_null:
+              row_condition: "weather_events is not null" # (Optional)
+          - not_negative
